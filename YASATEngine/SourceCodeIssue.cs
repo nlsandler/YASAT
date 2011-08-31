@@ -134,7 +134,7 @@ namespace YASATEngine
             sb.Append(PrepareCSVString(_rule.Description));
             sb.Append(PrepareCSVString(_rule.ExtensionList()));
             sb.Append(PrepareCSVString(_filePath));
-            sb.Append(_lineNumber);
+            sb.Append(_lineNumber).Append(",");
             sb.Append(PrepareCSVString(_offendingLine));
             sb.Append(PrepareCSVString(_codeBefore));
             sb.Append(PrepareCSVString(_offendingLine));
