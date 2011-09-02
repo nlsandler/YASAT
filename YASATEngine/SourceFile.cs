@@ -17,29 +17,35 @@ namespace YASATEngine
         {
             issues = new List<SourceCodeIssue>();
             path = file;
-            foreach (String line in File.ReadAllLines(path))
+            try
             {
-                bool inComment = false;
-                if (line.StartsWith("//"))
+                foreach (String line in File.ReadAllLines(path))
                 {
-                    commentedLines++;
-                }
-                else if (line.StartsWith("/*"))
-                {
-                    inComment = true;
-                    commentedLines++;
-                }
-                else if (line.Contains("*/"))
-                {
-                    inComment = false;
-                    commentedLines++;
-                }
-                else
-                {
-                    if (inComment)
+                    bool inComment = false;
+                    if (line.StartsWith("//"))
+                    {
                         commentedLines++;
+                    }
+                    else if (line.StartsWith("/*"))
+                    {
+                        inComment = true;
+                        commentedLines++;
+                    }
+                    else if (line.Contains("*/"))
+                    {
+                        inComment = false;
+                        commentedLines++;
+                    }
+                    else
+                    {
+                        if (inComment)
+                            commentedLines++;
+                    }
+                    lines++;
                 }
-                lines++;
+            }
+            catch (Exception)
+            {
             }
         }
     }
