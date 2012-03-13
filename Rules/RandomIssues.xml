@@ -9,6 +9,7 @@
       <Extension>java</Extension>
       <Extension>c</Extension>
       <Extension>cpp</Extension>
+      <Extension>scala</Extension>
     </Extensions>
     <Guidance>
     <Url>http://news.ycombinator.com/item?id=960886</Url>
@@ -24,6 +25,7 @@
       <Extension>java</Extension>
       <Extension>c</Extension>
       <Extension>cpp</Extension>
+      <Extension>scala</Extension>
     </Extensions>
     <Guidance>
     <Url>http://en.wikipedia.org/wiki/Cryptographically_secure_pseudorandom_number_generator</Url>
@@ -47,6 +49,7 @@
     <RegularExpressionPattern>SecureRandom</RegularExpressionPattern>
     <Extensions>
       <Extension>java</Extension>
+      <Extension>scala</Extension>
     </Extensions>
     <Guidance>
     <Url>https://www.owasp.org/index.php/Using_the_Java_Cryptographic_Extensions</Url>

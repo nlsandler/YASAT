@@ -19,6 +19,7 @@
       <Extension>vb</Extension>
       <Extension>rb</Extension>
       <Extension>erb</Extension>
+      <Extension>scala</Extension>
     </Extensions>
     <Guidance>
     <Url>http://teammentor.securityinnovation.com/default.aspx#Filter=%7B%7D%7BCategory%7CCryptography%7D</Url>
@@ -44,6 +45,7 @@
       <Extension>vb</Extension>
       <Extension>rb</Extension>
       <Extension>erb</Extension>
+      <Extension>scala</Extension>
     </Extensions>
     <Guidance>
     <Url>http://teammentor.securityinnovation.com/default.aspx#Filter=%7B%7D%7BCategory%7CCryptography%7D</Url>

@@ -20,6 +20,7 @@
       <Extension>vb</Extension>
       <Extension>rb</Extension>
       <Extension>erb</Extension>
+      <Extension>scala</Extension>
     </Extensions>
     <Guidance>
     <Url>https://secure.wikimedia.org/wikipedia/en/wiki/FIXME#Tags</Url>
