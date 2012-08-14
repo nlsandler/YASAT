@@ -64,6 +64,7 @@
     <Compile Include="SelectRules.xaml.cs">
       <DependentUpon>SelectRules.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs" />
     <Page Include="GenerateReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

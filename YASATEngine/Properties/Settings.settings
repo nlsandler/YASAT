@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="RulesDirectory" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Rules</Value>
+      <Value Profile="(Default)">C:\Users\Nora Sandler\YASAT\Rules</Value>
     </Setting>
     <Setting Name="LinesBefore" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">20</Value>
