@@ -22,7 +22,7 @@
       <Example> swprintf(string_to_print, max_size, evil_format);</Example>
       <Example> fprintf(myfile, evil_string); </Example>
       <Example> vprintf(mystring, myargs); </Example>
-      <Example> scanf (evil_string, &amp;arg1, &amp;arg2, &amp;arg3); </Example>
+      <Example> scanf (evil_string, &arg1, &arg2, &arg3); </Example>
       <Example> snprintf(string, 20, evil_format); </Example>
       <Example> StringCbPrintf(string_ptr, 20, evil_format); </Example>
       <Example> StringCbPrintfEx(string_dst, dst_size, end_pt, extra_bytes, STRSAFE_FILL_BEHIND_NULL, evil_format_string); </Example>
@@ -34,7 +34,7 @@
       <Example>swprintf(string_to_print, max_size, "I have %d format strings", num_strings);</Example>
       <Example>fprintf(myfile, "%s", string); </Example>
       <Example>vprintf("%s", myargs);</Example>
-      <Example>scanf("The number is %d", &amp;my_num);</Example>
+      <Example>scanf("The number is %d", &my_num);</Example>
       <Example>snprintf(string, 20, "The phrase is %s", my_phrase); </Example>
       <Example> StringCbPrintf(string_ptr, 20, "There are %d ducks", number_of_ducks); </Example>
       <Example> StringCbPrintfEx (string_dst, dst_size, end_pt, extra_bytes, STRSAFE_FILL_BEHIND_NULL, "There are no ducks."); </Example>
@@ -71,8 +71,8 @@
       <Example>recvfrom(sock, Short_buf, 5000, 0, from, len); </Example>
       <Example> buf = memmove ( dst, src, too_big_number ) ; </Example>
       <Example> memset(str, '0', -4); </Example>
-      <Example> err=regqueryvalue(key, NULL, NULL,&amp;bufsize);</Example>
-      <Example>err = RegQueryValueEx(key, "regName", NULL, &amp;typeCode, short_buf, &amp;size); </Example>
+      <Example> err=regqueryvalue(key, NULL, NULL,&bufsize);</Example>
+      <Example>err = RegQueryValueEx(key, "regName", NULL, &typeCode, short_buf, &size); </Example>
     </RealPositiveExamples>
     <!--No false positive examples; trying to guess when these are safe seems like a lost cause. -->
   </Rule>

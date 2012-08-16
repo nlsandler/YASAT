@@ -26,12 +26,10 @@
     </Guidance>
     <Description>Custom encryption should never be used. Upgrade to industry standards such as RSA, AES, SHA256, etc.</Description>
     <RealPositiveExamples>
-      <Example>var enc = enc.Encrypt(plain, key);</Example>
-      <Example>String plaintext = cryptoBot.decrypt ( messages.getSecretMessage()); </Example>
-      <Example>NSData *cipherText = [plainText EncryptedWithKey: key];</Example>
-      <Example>def getHash(msg) </Example>
-      <Example>+(NSData *)cryptoGet:(NSString *)cipherText{ </Example>
+      <Example></Example>
     </RealPositiveExamples>
+    <FalsePositiveExamples>
+    </FalsePositiveExamples>
   </Rule>
   <Rule>
     <Title>Potential poor encoder</Title>
@@ -66,9 +64,8 @@
       <Example> plaintext = ciphertext.decode() </Example>
       <Example> messages.Append(EncodeMessage("plaintext")); </Example>
       <Example> cipherText = new EncodedMessage(plainText, key); </Example>
-      <Example> encode </Example>
     </RealPositiveExamples>
-    <!--Actually avoiding these false positives, while still capturing the full range of potential problems, probably isn't doable. -->
+    <!--Actually avoiding these false positives, while still capturing the full range of potential problems, does not seem realistic to me. -->
     <FalsePositiveExamples>
        <Example>function urlEncode(str) {</Example>
        <Example> echo '&lt;a href="'.$url.'/path/to/page?var='.urlencode($var).'"&gt;click&lt;/a&gt;</Example>

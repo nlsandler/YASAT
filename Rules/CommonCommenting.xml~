@@ -27,21 +27,21 @@
     </Guidance>
     <Description>Often developers will make notes in source to remind themselves to return to a block of code due to a known issue or bug.</Description>
     <RealPositiveExamples>
-      <Example>//TODO: take all comments out of this code.</Example>
-      <Example>///FIXME: Remove all of the comments.</Example>
-      <Example>#BUGBUG: Derp derp, I am putting silly things in my code.</Example>
-      <Example>'XXX: Is this a thing people use to indicate their code was buggy? I figured it just meant the code was NSFW.</Example>
-      <Example>--DEBUG: Verb. To pick out bugs.</Example>
-      <Example>#HACK: This needs fixin'. </Example>
-      <Example>//NOTE: Duly noted.</Example>
-      <!--Cases it would be nice to support -->
-      <Example>//Blahdeblah, some random stuff. Also, BUG: fix this problem.</Example>
-      <Example>/* TODO: Do some stuff */ </Example>
-      <Example>"""HACK: this is bad code."""</Example>
-      <Example> /* BUGBUG: there's a bug. </Example>
-      <Example> FIXME: Fix some stuff. */ </Example>
-      <Example> * Just an asterisk followed by a space, then text, is probably a comment block. This may generate too many false positives, though. </Example>
+      <Example>//I should remember to fix this terrible bug that will break everything.</Example>
+      <Example>///Oh, look at this code I have written.</Example>
+      <Example>#Whatever shall I do about it?</Example>
+      <!--The following examples probably need their own extension-specific rules.-->
+      <Example>-- Clearly I must be a terrible programmer.</Example>
+      <Example>' Otherwise my code wouldn't be full of all of these comments.</Example>
+      <Example>TODO: take all comments out of this code.</Example>
+      <Example>FIXME: Remove all of the comments.</Example>
+      <Example>BUGBUG: Derp derp, I am putting silly things in my code.</Example>
+      <Example>XXX: Is this a thing people use to indicate their code was buggy? I figured it just meant the code was NSFW.</Example>
+      <Example>DEBUG: Verb. To pick out bugs.</Example>
+      <Example>HACK: This needs fixin'. </Example>
+      <Example>NOTE: Duly noted.</Example>
     </RealPositiveExamples>
     <!--No false positives included at the moment; I don't think that can be captured easily by regular expressions.-->
+    <!--However, putting "problem" comments" and "normal" comments (e.g. // vs. FIXME) in different rules might be useful. -->
   </Rule>
 </Rules>

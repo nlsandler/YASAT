@@ -12,5 +12,23 @@
 	    <Url>http://www.jamescun.com/2011/10/securing-php/</Url>
     </Guidance>
     <Description>Several dangerous functions exist in PHP that could allow an attacker to execute arbitrary code, system commands, or otherwise modify the control flow of an application or expose how it functions. Avoid these calls where possible.</Description>
+    <RealPositiveExamples>
+      <Example>echo exec($cmd);</Example>
+      <Example>passthru($cmd);</Example>
+      <Example> shell_exec ( $cmd ); </Example>
+      <Example> $process = proc_open('php', $cmd, $spec, $pipes, $cwd, $env); </Example>
+      <Example> $process = popen($cmd, 'r'); </Example>
+      <Example> $process = popen('some/executable', $mode); </Example>
+      <Example> $ini_stuff = parse_ini_file($file); </Example>
+      <Example> $success = symlink($targ, $link); </Example>
+      <Example> $success = symlink('my/file', $link); </Example>
+      <Example> $success = symlinke($targ, 'link'); </Example>
+    </RealPositiveExamples>
+    <!--<FalsePositiveExamples>
+      <Example>echo exec('whoami');</Example>
+      <Example> passthru("cat text.txt", $err); </Example>
+      <Example> shell_exec( 'ls ' ) ; </Example>
+      <Example> $process = popen('some/executable', 'r') </Example>
+    </FalsePositiveExamples>-->
   </Rule>
 </Rules>

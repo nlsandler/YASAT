@@ -1,25 +1,43 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Rules>
   <Rule>
-  <Title>Potential format string vulnerability (Carbon Framework)</Title>
+    <Title>Potential format string vulnerability (Carbon Framework)</Title>
     <RegularExpressionPattern>(CFStringCreateWithFormat|CFStringCreateWithFormatAndArguments|CFStringAppendFormat|AEBuildDesc|AEBuildParameters|AEBuildAppleEvent)\s*([^,]*$)</RegularExpressionPattern>
     <Extensions>
-	  <Extension>m</Extension>
+      <Extension>m</Extension>
     </Extensions>
     <Guidance>
-	    <Url>http://teammentor.securityinnovation.com/ViewGuidanceItem.aspx?ItemID=99e57fc7-4783-448e-b109-b85dfb1b65b2</Url>
+      <Url>http://teammentor.securityinnovation.com/ViewGuidanceItem.aspx?ItemID=99e57fc7-4783-448e-b109-b85dfb1b65b2</Url>
     </Guidance>
     <Description>Improperly used functions which handle format strings can lead to crashes and code execution issues.</Description>
+    <RealPositiveExamples>
+      <Example>CFStringCreateWithFormat(NULL, NULL, CFSTR("And a %s in a pear tree."), type_of_fowl);</Example>
+      <Example>CFStringCreateWithFormatAndArguments(NULL,NULL,CFSTR("%d French hens, %d turtle doves"),arglist); </Example>
+      <Example>CFStringAppendFormat(Prior_birds, NULL,   CFSTR ("%d golden rings, %d calling birds"), some,a_few);</Example>
+      <Example>   AEBuildDesc      (dsc, NULL, CFSTR("%@ swans a-swimming, %d gees a-laying"), a_few_more, even_more); </Example>
+      <Example> AEBuildParameters (evt, NULL, CFSTR( "%d ladies dancing, %@ maids a-milking" ), many, lots_and_lots) ;</Example>
+      <Example> AEBuildAppleEvent (var, another_var, typeApplSignature, stuff, 42, kAutoGenerateReturnID, kAnyTransactionID, evt, NULL, CFSTR("%d pipers piping, %d lords a-leaping"), too_many, a_bunch); </Example>
+    </RealPositiveExamples>
   </Rule>
   <Rule>
-  <Title>Potential format string vulnerability (Cocoa Framework)</Title>
-  <RegularExpressionPattern>\[\s*(NSString|NSMutableString|NSAlert|NSPredicate|NSException|NSRunAlertPanel)\s*(stringWithFormat|initWithFormat|appendFormat|alertWithMessageText|predicateWithFormat|raise\s*:\s*format\s*:\s*(arguments)?)\s*:([^,]*$)</RegularExpressionPattern>
+    <Title>Potential format string vulnerability (Cocoa Framework)</Title>
+    <RegularExpressionPattern>\[\s*(NSString|NSMutableString|NSAlert|NSPredicate|NSException|NSRunAlertPanel)\s*(stringWithFormat|initWithFormat|appendFormat|alertWithMessageText|predicateWithFormat|raise\s*:\s*format\s*:\s*(arguments)?)\s*:([^,]*$)</RegularExpressionPattern>
     <Extensions>
-	  <Extension>m</Extension>
+      <Extension>m</Extension>
     </Extensions>
     <Guidance>
-	    <Url>http://teammentor.securityinnovation.com/ViewGuidanceItem.aspx?ItemID=99e57fc7-4783-448e-b109-b85dfb1b65b2</Url>
+      <Url>http://teammentor.securityinnovation.com/ViewGuidanceItem.aspx?ItemID=99e57fc7-4783-448e-b109-b85dfb1b65b2</Url>
     </Guidance>
     <Description>Improperly used functions which handle format strings can lead to crashes and code execution issues.</Description>
+    <RealPositiveExamples>
+      <Example>string = [NSString stringWithFormat: @"Two roads diverged in a %@ wood,", wood_color];</Example>
+      <Example>NSString *string = [[NSString alloc] initWithFormat: @"And sorry %@ could not %@ both", pronoun, verb];</Example>
+      <Example>[stanza appendFormat:@"And be %@ traveler, long I stood", number_of_travelers];</Example>
+      <Example>NSAlert *alert = [NSAlert  alertWithMessageText: @"And looked" defaultButton:@"down" alternateButton:@"one" otherButton:@"as far" informativeText:@"as %@ could", pronoun];</Example>
+      <Example>NSPredicate *predicate = [ NSPredicate predicateWithFormat:@"To where it %@ in the undergrowth;", verb];</Example>
+      <Example>[NSException raise:@"Then took the other," format:@"just as %@," adjective]; </Example>
+      <Example>[NSException raise:@"And having perhaps the better claim," format:@"Because it was %@ and wanted %@;" arguments: arglist];</Example>
+      <Example>int alertClick = NSRunAlertPanel(@"Though as for that the passing there", @"Had worn them really about the same.", @"And both", @"that morning", @"equally lay");</Example>
+    </RealPositiveExamples>
   </Rule>
 </Rules>
