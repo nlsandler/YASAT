@@ -38,10 +38,6 @@
     <RealPositiveExamples>
       <Example> Math.random() </Example>
       <Example> Math.random ( ) </Example>
-      <Example> Random rng = new Random( seed ); </Example>
-      <Example> Dim rng As New Random(seed); </Example>
-      <Example> Random^ rng = gcnew Random( seed ); </Example>
-      <Example> int somerand = rand()%100000; </Example>
     </RealPositiveExamples>
   </Rule>
   <Rule>

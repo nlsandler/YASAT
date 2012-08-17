@@ -18,6 +18,5 @@
     <FalsePositiveExamples>
       <Example> printf "The number is %f", 4.92; </Example>
       <Example> $vuln = sprintf("Hello, %s!", $name); </Example>
-    </FalsePositiveExamples>
   </Rule>
 </Rules>

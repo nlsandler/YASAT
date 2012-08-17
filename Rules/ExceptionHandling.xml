@@ -16,9 +16,17 @@
     <RealPositiveExamples>
       <Example>String msg = "Error:" + e.getMessage(); </Example>
       <Example>e.printStackTrace(); </Example>
-      <Example> throw new VulnException(e.getMessage()); </Example>
+      <Example> throw new VulnException(e.getMessage () ); </Example>
       <Example> throw new System.InvalidOperationException("You there! Cut it out!"); </Example>
+      <Example> e.printStackTrace(); </Example>
       <Example>AlertWindow.Text = ex.Message;</Example>
+      <Example>MsgBox("An exception occurred: " & ex.Message)</Example>
+      <Example>AlertWindow.Text = ex.StackTrace</Example>
+      <Example> case e:VulnException => e.printStackTrace() </Example>
+      <Example> case e:VulnException => println ("Error: " + e.getMessage) </Example>
+      <!--C++ examples, may add support for this later -->
+      <Example>Console::WriteLine( "Error: {0}", ex->Message ); </Example>
+      <Example>Console::WriteLine( "Error: {0}", ex->StackTrace ); </Example>
     </RealPositiveExamples>
   </Rule>
 </Rules>
