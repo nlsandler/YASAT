@@ -3,7 +3,8 @@ import os
 import argparse
 from xml.etree.ElementTree import ElementTree
 
-DEBUG = True
+#DEBUG prints which XML doc it's parsing, useful for finding XML parsing errors
+DEBUG = False
 
 class Rule:
     """A regex that may indicate a security problem, and some associated information."""
@@ -83,10 +84,12 @@ check_false_pos = args.p
 
 #default is to check both
 if not(check_false_neg or check_false_pos):
-    check_false_neg = check_false_pose = True
+    check_false_neg = check_false_pos = True
 
+print "Check for false negatives: " + str(check_false_neg) + "\n"
+print "Check for false positives: " + str(check_false_pos) + "\n"
 
-rules = getAllRules()
+#rules = getAllRules()
 
-for rule in rules:
-    rule.rule_tester()
+#for rule in rules:
+ #   rule.rule_tester()
