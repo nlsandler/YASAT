@@ -3,8 +3,8 @@ import os
 import argparse
 from xml.etree.ElementTree import ElementTree
 
-DEBUG = False
-#DEBUG = True
+#DEBUG prints which XML doc it's parsing, useful for finding XML parsing errors
+DEBUG = True
 
 class Rule:
     """A regex that may indicate a security problem, and some associated information."""
@@ -35,7 +35,7 @@ class Rule:
         else:
             #TODO: Have actual error-handling here, probably an exception
             print "Invalid XML"
-    def ruleTester(self):
+    def rule_tester(self):
         """make sure our regexes work the way we want them to"""
         print "Now testing rule: " + self.title + "\nWith regex: " + self.regExString + "\n"
         if check_false_neg:
@@ -47,6 +47,7 @@ class Rule:
                 if self.regEx.search(ex):
                     print "\tFail: regex incorrectly matched:\n\t" + ex + "\n"
         return
+
 
 def getRulesInFile(file):
     if DEBUG:
@@ -64,10 +65,10 @@ def getRulesInFile(file):
     
 def getAllRules(dir="../Rules"):
     allRules = []
-    for r,d,f in os.walk(dir):
+    for r, d, f in os.walk(dir):
         for file in f:
             if file.endswith(".xml"):
-                allRules.extend(getRulesInFile(os.path.join(r,file)))
+                allRules.extend(getRulesInFile(os.path.join(r, file)))
     return allRules
 
         
@@ -89,4 +90,4 @@ if not(check_false_neg or check_false_pos):
 rules = getAllRules()
 
 for rule in rules:
-    rule.ruleTester()
+    rule.rule_tester()
