@@ -25,22 +25,26 @@
     </Guidance>
     <Description>A SQL injection attack exploits vulnerabilities in input validation to run arbitrary commands in the database. It can occur when your application uses input to construct dynamic SQL statements to access the database. It can also occur if your code uses stored procedures that are passed strings that contain raw user input. Using the SQL injection attack, an attacker can execute arbitrary commands in your database, with all the privileges granted to the process being attacked.</Description>
     <RealPositiveExamples>
+      <!--Get lots of different weird names for tables and columns-->
+      <Example>'SELECT table.some$stuff, table2.other_stuff FROM table, table2 WHERE table2.this123stuff_="'.$param.'"'</Example>
+      <Example> 'SELECT [this name has spaces].column FROM [this name has spaces] WHERE [this name has spaces].column2=$value'</Example>
+      <Example>'SELECT column$ FROM table WHERE table.column$ = table.@column AND table.column$ = $somevalue'</Example>
       <!--PHP-->
       <Example>'SELECT someStuff FROM someTable WHERE someColumn="'.$param.'"'</Example>
-      <Example>"SELECT stuff FROM things ORDER BY orderer LIMIT 100000 OFFSET $offset;" </Example>
-      <Example>"SELECT things FROM stuff WHERE this = '$that'" </Example>
+      <Example>"SELECT things.stuff FROM things ORDER BY orderer LIMIT 100000 OFFSET $offset;" </Example>
+      <Example>"SELECT things AS t FROM this_table WHERE this = '$that'" </Example>
       <Example>SELECT * from everything WHERE this LIKE '%$that%'</Example>
       <Example>'SELECT '.$column.' FROM things where STUFF = ?'</Example>
       <Example>"SELECT column FROM '$_POST[tablename]'" </Example>
       <!--Java/C#/not really language-specific-->
-      <Example>"SELECT things FROM stuff WHERE this ='" + Some.data + "'";</Example>
-      <Example>'SELECT things FROM stuff WHERE stuff ='</Example>
+      <Example>"SELECT things FROM stupid#table_name WHERE this ='" + Some.data + "'";</Example>
+      <Example>'SELECT things FROM some$stuff WHERE stuff ='</Example>
       <!--python-->
       <Example>"SELECT things FROM stuff WHERE this='%s'" % (that)</Example>
       <!--Objective-C-->
       <Example>"SELECT * WHERE stuff=\"%@\" AND num > 10"</Example>
       <!--Visual Basic-->
-      <Example>"SELECT things FROM stuff WHERE this = '" &amp; info.text &amp; "'" </Example>
+      <Example>"SELECT things FROM stuff123 WHERE this = '" &amp; info.text &amp; "'" </Example>
       <!--Ruby-->
       <Example>"select * from table where param = '#{params[:foo]}' " </Example>
     </RealPositiveExamples>
@@ -50,9 +54,8 @@
       <Example>'SELECT * FROM allthethings WHERE id = :id'</Example>
       <Example>'SELECT * FROM allthethings WHERE color = ? ORDER BY ?'</Example>
       <!--C#/VB and Ruby-->
-      <Example>"SELECT things FROM stuff WHERE param = @param"</Example>
+      <Example>"SELECT stuff.things FROM stuff WHERE param = @param"</Example>
       <!--python-->
-      <Example>"SELECT things FROM stuff WHERE key=%s"</Example>
       <Example>"SELECT things FROM stuff WHERE key=:1"</Example>
       <Example>"SELECT things FROM stuff WHERE key=%(key)s"</Example>
     </FalsePositiveExamples>
@@ -82,8 +85,11 @@
     </Guidance>
     <Description>A SQL injection attack exploits vulnerabilities in input validation to run arbitrary commands in the database. It can occur when your application uses input to construct dynamic SQL statements to access the database. It can also occur if your code uses stored procedures that are passed strings that contain raw user input. Using the SQL injection attack, an attacker can execute arbitrary commands in your database, with all the privileges granted to the process being attacked.</Description>
     <RealPositiveExamples>
+      <!-- stupid names -->
+      <Example>'INSERT INTO [wh4t an_@w#Fu! &amp;name?? for$ a tab*)le] VALUES('.$val1.','.$val2.')'</Example>
+      <Example>'INSERT INTO @table VALUES($stupid, $name)'</Example>
       <!--PHP-->
-      <Example>'INSERT INTO sometable VALUES(.val1.','.val2.)'</Example>
+      <Example>'INSERT INTO sometable VALUES(.$val1.','.$val2.)'</Example>
       <Example>"INSERT INTO sometable VALUES($evil)" </Example>
       <Example>INSERT INTO sometable VALUES('$this', '$that')</Example>
       <Example>INSERT INTO '$_POST[tablename]' VALUES("a", "b", "c")</Example>
@@ -107,7 +113,6 @@
       <!--C#/VB & Ruby-->
       <Example>INSERT INTO table VALUES(@param1, param2)</Example>
       <!--python-->
-      <Example>INSERT INTO table VALUES (%s, %s)</Example>
       <Example>INSERT INTO table VALUES (%(param)s, %(otherparam)s)</Example>
     </FalsePositiveExamples>
     </Rule>
@@ -135,6 +140,34 @@
       <Url>http://teammentor.securityinnovation.com/ViewGuidanceItem.aspx?ItemID=d4b48303-d535-4549-90fc-474b99eff901</Url>
     </Guidance>
     <Description>A SQL injection attack exploits vulnerabilities in input validation to run arbitrary commands in the database. It can occur when your application uses input to construct dynamic SQL statements to access the database. It can also occur if your code uses stored procedures that are passed strings that contain raw user input. Using the SQL injection attack, an attacker can execute arbitrary commands in your database, with all the privileges granted to the process being attacked.</Description>
+    <RealPositiveExamples>
+      <!--PHP-->
+      <Example>'UPDATE table SET column1=value1 WHERE column2 ="'.$value2.'"'</Example>
+      <Example>'UPDATE table SET table.columnA = $value WHERE table.columnB = $othervalue' </Example>
+      <Example>'UPDATE table SET table.[stupid column?]=table.@stuff WHERE table.things LIKE %$value%'</Example>
+      <Example>'UPDATE table SET table.column="'.$things.'" WHERE table.other_column > 18' </Example>
+      <Example>'UPDATE table SET table.column=$_POST[column]'</Example>
+      <!--Languages w/ + string concatenator, like Java-->
+      <Example>"UPDATE table SET table.column="+value </Example>
+      <Example>'UPDATE "Yes, you can totally || //\.\, name a table this"  SET table.column='</Example>
+      <!--python-->
+      <Example>"UPDATE table SET table.%s=%s" % (things, stuff) </Example>
+      <!--Objective-C-->
+      <Example>"UPDATE table SET stuff=\"%@\" WHERE x=y"</Example>
+      <!--Visual Basic-->
+      <Example>"UPDATE table SET stuff='" &amp; value.stuff &amp; "'WHERE things=" &amp; userID </Example>
+      <Example>"UPDATE table SET stuff=thinngs WHERE param = '#{params[:foo]}' "</Example>
+    </RealPositiveExamples>
+    <FalsePositiveExamples>
+      <Example>\\We need to update this thing when that thing is set.</Example>
+      <!-- Using ? placeholder -->
+      <Example>"UPDATE table SET things=?, stuff=? WHERE otherstuff = ?"</Example>
+      <!-- Using :name placeholder -->
+      <Example>"UPDATE table SET things=:place WHERE stuff=:holder"</Example>
+      <Example>"UPDATE table SET things = stuff WHERE stuff &gt; :placeholder" </Example>
+      <!--Using @ placeholder-->
+      <Example>"UPDATE table SET things=@stuff WHERE stuff=@things"</Example>
+    </FalsePositiveExamples>
   </Rule>
     <Rule>
     <Title>Potential SQL Injection Issue</Title>
@@ -160,5 +193,30 @@
       <Url>http://teammentor.securityinnovation.com/ViewGuidanceItem.aspx?ItemID=d4b48303-d535-4549-90fc-474b99eff901</Url>
     </Guidance>
     <Description>A SQL injection attack exploits vulnerabilities in input validation to run arbitrary commands in the database. It can occur when your application uses input to construct dynamic SQL statements to access the database. It can also occur if your code uses stored procedures that are passed strings that contain raw user input. Using the SQL injection attack, an attacker can execute arbitrary commands in your database, with all the privileges granted to the process being attacked.</Description>
+    <RealPositiveExamples>
+      <!--PHP-->
+      <Example> 'DELETE     FROM table WHERE column="'.$value.'"'</Example>
+      <Example>   '  DELETE FROM "terrible !! name for?? a table" WHERE "terrible !! name for?? a table"=$value'</Example>
+      <Example> 'DELETE FROM [also a &lt;&gt;&lt;&gt; stupid #%(835 table name] WHERE [also a &lt;&gt;&lt;&gt; stupid #%(835 table name].column = "'.$param.'"'</Example>
+      <!--Using + concatenator-->
+      <Example> "DELETE FROM $this_table WHERE _this$column =" + stuff </Example>
+      <Example> "DELETE FROM table WHERE column&lt;"</Example>
+      <!--python-->
+      <Example> "DELETE FROM %s WHERE column &gt; %s" % (val1, val2) </Example>
+      <!--Objective-C-->
+      <Example> "DELETE FROM [%well, this is a terrible table] WHERE column LIKE %@ and other_column LIKE %@"</Example>
+      <!--Visual Basic-->
+      <Example> "DELETE FROM table WHERE column="&amp;column.value </Example>
+      <!--Ruby-->
+      <Example> "DELETE FROM table WHERE column = '#{params[:foo]}'"</Example>
+    </RealPositiveExamples>
+    <FalsePositiveExamples>
+      <!-- ? placeholder -->
+      <Example>'DELETE FROM table WHERE column = ?' </Example>
+      <!-- :name placeholder -->
+      <Example>'DELETE FROM table WHERE column = :column' </Example>
+      <!-- Using @ placeholder -->
+      <Example>"DELETE FROM table WHERE column = @column"</Example>
+    </FalsePositiveExamples>		 
   </Rule>
 </Rules>

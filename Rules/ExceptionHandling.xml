@@ -20,7 +20,7 @@
       <Example> throw new System.InvalidOperationException("You there! Cut it out!"); </Example>
       <Example> e.printStackTrace(); </Example>
       <Example>AlertWindow.Text = ex.Message;</Example>
-      <Example>MsgBox("An exception occurred: " & ex.Message)</Example>
+      <Example>MsgBox("An exception occurred: " &amp; ex.Message)</Example>
       <Example>AlertWindow.Text = ex.StackTrace</Example>
       <Example> case e:VulnException => e.printStackTrace() </Example>
       <Example> case e:VulnException => println ("Error: " + e.getMessage) </Example>

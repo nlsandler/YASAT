@@ -15,5 +15,6 @@
     <RealPositiveExamples>
       <Example>public bool CheckValidationResult(ServicePoint pt,</Example>
       <Example>ServicePointManager.ServerCertificateValidationCallback = myQuestionableValidationRoutine;</Example>
+    </RealPositiveExamples>
   </Rule>
 </Rules>
